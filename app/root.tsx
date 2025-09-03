@@ -1,7 +1,6 @@
 import {
   isRouteErrorResponse,
   Links,
-  Meta,
   Outlet,
   Scripts,
   ScrollRestoration,
@@ -29,7 +28,12 @@ export function Layout({ children }: { children: React.ReactNode }) {
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <Meta />
+        <meta property="og:title" content="Finanzas app" />
+        <meta
+          name="description"
+          content="Maneja tus finanzas personales de forma sencilla y efectiva"
+        />
+        <title>Finanzas app</title>
         <Links />
       </head>
       <body>

@@ -1,0 +1,51 @@
+@layer components {
+    .dashboard-sidebar {
+        @apply text-white w-64 transition-all;
+        background-color: var(--color-primary);
+    }
+
+    .dashboard-sidebar.hidden {
+        transform: translateX(-16rem); /* -w-64 */
+    }
+
+    .dashboard-sidebar .sidebar-title {
+        @apply p-6 text-2xl font-bold;
+    }
+
+    .dashboard-sidebar nav {
+        @apply mt-6 flex flex-col gap-2;
+    }
+
+    .dashboard-sidebar nav a {
+        @apply px-4 py-2 rounded;
+        color: white;
+        transition: background-color 0.2s;
+    }
+
+    .dashboard-sidebar nav a:hover {
+        background-color: var(--color-primary-light);
+    }
+
+    /* Header */
+    .dashboard-header {
+        @apply flex items-center justify-between p-4 shadow;
+        background-color: white;
+    }
+
+    .dashboard-header button {
+        @apply font-bold;
+        color: var(--color-primary);
+    }
+
+    .dashboard-header .user-info {
+        @apply flex items-center gap-4;
+    }
+
+    .dashboard-header .user-info img {
+        @apply w-10 h-10 rounded-full;
+    }
+
+    .dashboard-header .user-info .text-sm {
+        color: #6B7280; /* Tailwind gray-500 */
+    }
+}
