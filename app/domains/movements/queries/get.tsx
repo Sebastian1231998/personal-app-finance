@@ -45,6 +45,7 @@ export function useListMovements(walletId: string, setMovements: Function, optio
     queryKey: [`getListMovements_${options?.movement_type}`, walletId],
     queryFn: () => getListMovements(walletId, options),
     enabled: !!walletId,
+    staleTime:0,
     retry: 1,
   });
 

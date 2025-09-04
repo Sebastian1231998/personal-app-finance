@@ -18,7 +18,7 @@ export async function clientAction({
   let formData = await request.formData();
 
   const description = formData.get("description")?.toString() ?? ""
-  const amount = parseInt(formData.get("amount")?.toString() ?? "0")
+  const amount = parseFloat(formData.get("amount")?.toString() ?? "0")
   const movement_type = formData.get("movement_type")?.toString() ?? ""
   const category_id = formData.get("categories")?.toString() ?? ""
   const wallet_id = formData.get("wallet_id")?.toString() ?? ""

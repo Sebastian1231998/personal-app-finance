@@ -16,7 +16,6 @@ const FormCreateSaving = ({setOpen}:any) => {
   const [messageError, setMessageError] = useState('No se pudo crear el movimiento')
   const [loading, setLoading] = useState(false)
   
-
   const {wallet, pocket, pockets ,savingsMovements, setSavingsMovements, setWallet, setPockets} = useStore()
 
   const [saving, setSaving] = useState({
@@ -81,26 +80,21 @@ const FormCreateSaving = ({setOpen}:any) => {
       movement_type: saving.movement_type,
       created_at: new Date().toISOString(),
       categories: {
-        name: saving.categories ?? ""
+        name: "Movimiento creado"
       }
     };
 
-    console.log("Nuevo movimiento:", newMovement);
-
     const updatedPockets = pockets.map((p) =>
       p.id === pocket.id
-        ? { ...p, balance: p?.balance! + parseInt(saving.amount.toString()) }
+        ? { ...p, balance: p?.balance! + parseFloat(saving.amount.toString()) }
         : p
     );
 
     setSavingsMovements([newMovement, ...savingsMovements]);
-    console.log("SavingsMovements actualizados:", [newMovement, ...savingsMovements]);
 
-    setWallet({ ...wallet, balance: parseInt(wallet?.balance!.toString()) + parseInt(saving.amount.toString()) });
-    console.log("Wallet actualizado:", { ...wallet, balance: wallet?.balance! + saving.amount });
+    setWallet({ ...wallet, balance: parseFloat(wallet?.balance!.toString()) + parseFloat(saving.amount.toString()) });
 
     setPockets(updatedPockets);
-    console.log("Pockets actualizados:", updatedPockets);
 
     setOpen(false);
     setLoading(false);
