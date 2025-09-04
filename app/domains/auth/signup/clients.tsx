@@ -1,5 +1,6 @@
 import { supabase } from "~/domains/configuration/supabase"
 import type { SignupResponse } from "../interfaces"
+import { getCurrencyByCountry } from "~/domains/currencies/useGetCurrencyByCountry";
 
 
 export const signupClient = async (
@@ -10,12 +11,25 @@ export const signupClient = async (
     email,
     password,
     options: {
-      emailRedirectTo: "http://localhost:5173/dashboard",
+      emailRedirectTo: `${window.location.origin}/dashboard`,
     },
   });
 
+  if (error || !data.user) {
+    return {
+      user: null,
+      error,
+      errorWalletCreation: null,
+    };
+  }
+
+  const { error: walletError } = await supabase
+    .from("wallet")
+    .insert({ user_id: data.user.id, currency: getCurrencyByCountry().currency});
+
   return {
     user: data.user,
-    error,
+    error: null,
+    errorWalletCreation: walletError,
   };
 };

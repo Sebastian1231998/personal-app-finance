@@ -1,87 +1,110 @@
-# Welcome to React Router!
+# Aplicación de Gastos
 
-A modern, production-ready template for building full-stack React applications using React Router.
+Esta aplicación permite gestionar movimientos de dinero, ahorro en "bolsillos" y cashback.
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/remix-run/react-router-templates/tree/main/default)
+---
 
-## Features
+## Requisitos
 
-- 🚀 Server-side rendering
-- ⚡️ Hot Module Replacement (HMR)
-- 📦 Asset bundling and optimization
-- 🔄 Data loading and mutations
-- 🔒 TypeScript by default
-- 🎉 TailwindCSS for styling
-- 📖 [React Router docs](https://reactrouter.com/)
+### Node.js
 
-## Getting Started
+Se uso  la versión **20.17.0**, verificar en caso de cualquier error.
 
-### Installation
+> Si tienes otra versión y encuentras errores, considera usar `nvm` para cambiar a la versión recomendada.
 
-Install the dependencies:
+### npm
+
+La versión que viene con Node.js.
+
+---
+
+## Instalación y Despliegue Local
+
+### 1. Clonar el repositorio
+
+```bash
+git clone <URL_DEL_REPOSITORIO>
+cd <NOMBRE_DEL_PROYECTO>
+```
+
+### 2. Instalar dependencias
 
 ```bash
 npm install
 ```
 
-### Development
-
-Start the development server with HMR:
-
-```bash
-npm run dev
-```
-
-Your application will be available at `http://localhost:5173`.
-
-## Building for Production
-
-Create a production build:
+### 3. Construir la aplicación
 
 ```bash
 npm run build
 ```
 
-## Deployment
-
-### Docker Deployment
-
-To build and run using Docker:
+### 4. Entrar a la carpeta de build
 
 ```bash
-docker build -t my-app .
-
-# Run the container
-docker run -p 3000:3000 my-app
+cd build
 ```
 
-The containerized application can be deployed to any platform that supports Docker, including:
+### 5. Iniciar el servidor
 
-- AWS ECS
-- Google Cloud Run
-- Azure Container Apps
-- Digital Ocean App Platform
-- Fly.io
-- Railway
-
-### DIY Deployment
-
-If you're familiar with deploying Node applications, the built-in app server is production-ready.
-
-Make sure to deploy the output of `npm run build`
-
-```
-├── package.json
-├── package-lock.json (or pnpm-lock.yaml, or bun.lockb)
-├── build/
-│   ├── client/    # Static assets
-│   └── server/    # Server-side code
+```bash
+npm run start
 ```
 
-## Styling
+### 6. Abrir la aplicación en el navegador
 
-This template comes with [Tailwind CSS](https://tailwindcss.com/) already configured for a simple default starting experience. You can use whatever CSS framework you prefer.
+```
+http://localhost:3000 0 http://localhost:5173
+```
+
+> Nota: La URL de redirección de autenticación se ajusta automáticamente al puerto donde ejecutes la app.
 
 ---
 
-Built with ❤️ using React Router.
+## Variables de Entorno
+
+Verifica el archivo `.env` en la raíz del proyecto con tus claves de Supabase:
+
+```env
+VITE_SUPABASE_URL=<TU_SUPABASE_URL>
+VITE_SUPABASE_KEY=<TU_SUPABASE_KEY>
+```
+
+> ⚠️ Estas variables vienen el PR solo con fines educativos, no subir a producción con crenciales reales.
+
+---
+
+## Uso Básico
+
+* Crear movimientos de dinero.
+* Gestionar "bolsillos" de ahorro.
+* Visualizar el balance de la billetera y el cashback acumulado.
+* Cada movimiento que generes suma cashback automáticamente.
+
+---
+
+## Funcionalidades
+
+* **Movimientos**: Agregar, listar y eliminar movimientos de dinero.
+* **Bolsillos**: Crear y actualizar pockets de ahorro.
+* **Wallet**: Mostrar balance actualizado.
+* **Cashback**: Visualizar saldo de cashback acumulado por movimientos.
+
+---
+
+## Tecnologías
+
+* **Supabase**: Autenticación y base de datos.
+* **React Router v7**: Navegación.
+* **Zustand**: Manejo de estado global.
+* **TailwindCSS**: Estilos.
+* **React Query**: Fetch de datos.
+* **TypeScript**: Tipado estático.
+
+---
+
+## Notas
+
+* Mantener la versión recomendada de Node.js para evitar errores en dependencias.
+* La aplicación está preparada para ejecutarse en la máquina local.
+* La URL de redirección en Supabase se ajusta al puerto donde ejecutes la app (localhost:5173 por defecto) para desarrollo.
