@@ -13,16 +13,20 @@ const FormAddNewPocket = ({success, error, setOpen}:any) => {
   const buttomSubmitting = fetcher.state === "submitting" ? "Guardando...": "Guardar";
 
     useEffect(()=>{
-      if(success){
+      if(success?.pocket){
+          console.log("INFO: success.pocket", success.pocket)
           setPockets([{
             ...success.pocket
           },...pockets,])
 
-          setOpen(false)
-          revalidator.revalidate()
+          setTimeout(()=>{
+            revalidator.revalidate()
+            setOpen(false)
+          },300)
+
       }
   
-    },[success])
+    },[success?.pocket])
 
   return (
     <div className="fixed inset-0 flex items-center justify-center bg-black/50 z-50">

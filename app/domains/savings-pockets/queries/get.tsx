@@ -18,12 +18,12 @@ export const getSavingPocketsByWalletId = async (walletId: string):Promise<Respo
 export function useSavingPocketsByWalletId(walletId: string) {
 
   const { setPockets } = useStore()
-  const query =  useQuery<ResponseGetSavingPockets>({
-    queryKey: ["savingPocketsByWalletId", walletId],
+  const query = useQuery<ResponseGetSavingPockets>({
+    queryKey: ["savingPocketsByWalletId"],
     queryFn: () => getSavingPocketsByWalletId(walletId),
-    enabled: !!walletId,
-    staleTime: 1000 * 30,
-    retry: 1, 
+    enabled: walletId ? true: false, 
+    staleTime: 0,
+    retry: 1,
   });
 
 
@@ -31,7 +31,6 @@ export function useSavingPocketsByWalletId(walletId: string) {
     if(query?.data?.data){
       setPockets(query?.data?.data)
     }
-
   },[query?.data?.data])
 
   return query

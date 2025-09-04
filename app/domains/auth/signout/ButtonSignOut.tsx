@@ -24,13 +24,21 @@ const ButtonSignOut = () => {
   return (
     <>
 
-      <button
-        disabled={loading}
-        onClick={() => signOut()}
-        className="flex justify-start px-4 py-2 rounded bg-[var(--color-primary)] hover:bg-[var(--color-primary-light)] text-white"
-      >
-        Cerrar sesión
-      </button>
+     <button
+      disabled={loading}
+      onClick={() => signOut()}
+      className="
+        flex justify-start px-4 py-2 rounded
+        bg-[#5B2E8A]       /* morado oscuro */
+        hover:bg-[#7A39B7] /* morado un poco más claro */
+        text-white
+        cursor-pointer
+        disabled:opacity-50 disabled:cursor-not-allowed
+        transition-colors duration-200
+      "
+    >
+      Cerrar sesión
+    </button>
 
     {errorSignOut && <ErrorMessage message='No se pudo cerrar sesión' />}
     </>
