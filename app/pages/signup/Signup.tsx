@@ -1,10 +1,9 @@
-import { Form, NavLink, redirect, useFetcher, useLoaderData, useNavigate, useNavigation } from "react-router";
+import { Form, NavLink, redirect, useNavigation } from "react-router";
 import type { Route } from "./+types/Signup";
 import { signupClient } from "~/domains/auth/signup/clients";
 import type { SignupResponse } from "~/domains/auth/interfaces";
 import ErrorMessage from "~/shared/errors/ErrorMessage";
 import { supabaseErrors } from "~/shared/errors/codes/MapErrorsSupabase";
-import { getUserByEmail } from "~/domains/users/queries/UserQueries";
 
 
 export async function clientAction({
@@ -16,7 +15,8 @@ export async function clientAction({
 
   const response:SignupResponse = await signupClient(email, password)
   console.log("INFO: clientAction response:", response);
-  if(!response.error){
+
+  if(!response.error && !response.errorWalletCreation){
     return redirect("/signup-confirmation");
   }
   return response;
@@ -25,7 +25,7 @@ export async function clientAction({
 const Signup = ({ actionData }: Route.ComponentProps) => {
 
   const fetcher = useNavigation();
-  const { error } = actionData ?? {error: null};
+  const { error, errorWalletCreation } = actionData ?? {error: null};
 
   console.log("INFO: fetcher actionData:", actionData);
 
@@ -58,6 +58,8 @@ const Signup = ({ actionData }: Route.ComponentProps) => {
         </button>
         </Form>
 
+        {errorWalletCreation && <div className="mt-2">  <ErrorMessage message={"Hubo un error al crear tu cuenta, por favor intenta nuevamente"} /></div>}
+
         {/* ErrorMessage dentro de form-card para que quede alineado */}
         {error && <div className="mt-2">
             <ErrorMessage message={message} />
@@ -72,7 +74,7 @@ const Signup = ({ actionData }: Route.ComponentProps) => {
             ¿Ya tienes una cuenta? Inicia sesión
         </NavLink>
         </div>
-    </div>
+     </div>
     </div>
   );
 };

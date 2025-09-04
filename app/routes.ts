@@ -14,6 +14,8 @@ export default [
     "domains/auth/session/ProtectedRoute.tsx", [
     layout("shared/theme/components/DashboardLayout.tsx", [
      route("dashboard", "pages/dashboard/Dashboard.tsx"),
+     route("expenses", "pages/dashboard/expenses/Expenses.tsx"),
+     route("savings", "pages/dashboard/savings/Savings.tsx")
     ]),
   ]),
 ] satisfies RouteConfig;

@@ -8,6 +8,9 @@ import {
 
 import type { Route } from "./+types/root";
 import "./app.css";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { SessionContextProvider } from "@supabase/auth-helpers-react";
+import { supabase } from "./domains/configuration/supabase";
 
 export const links: Route.LinksFunction = () => [
   { rel: "preconnect", href: "https://fonts.googleapis.com" },
@@ -21,6 +24,8 @@ export const links: Route.LinksFunction = () => [
     href: "https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap",
   },
 ];
+
+const queryClient = new QueryClient()
 
 export function Layout({ children }: { children: React.ReactNode }) {
   return (
@@ -37,7 +42,11 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <Links />
       </head>
       <body>
-        {children}
+        <SessionContextProvider supabaseClient={supabase}>
+          <QueryClientProvider client={queryClient}>
+            {children}
+          </QueryClientProvider>
+        </SessionContextProvider>
         <ScrollRestoration />
         <Scripts />
       </body>

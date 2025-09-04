@@ -30,7 +30,7 @@ const Login = ({ actionData }: Route.ComponentProps) => {
 
   const message = supabaseErrors[ error?.code as string];
 
-  const buttomSubmitting = fetcher.state === "submitting" ? "Creando cuental..." : "Iniciar sesión";
+  const buttomSubmitting = fetcher.state === "submitting" ? "Iniciando sesión..." : "Iniciar sesión";
 
   return (
     <div className="form-page">
