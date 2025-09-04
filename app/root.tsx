@@ -1,7 +1,6 @@
 import {
   isRouteErrorResponse,
   Links,
-  Meta,
   Outlet,
   Scripts,
   ScrollRestoration,
@@ -9,6 +8,9 @@ import {
 
 import type { Route } from "./+types/root";
 import "./app.css";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { SessionContextProvider } from "@supabase/auth-helpers-react";
+import { supabase } from "./domains/configuration/supabase";
 
 export const links: Route.LinksFunction = () => [
   { rel: "preconnect", href: "https://fonts.googleapis.com" },
@@ -23,17 +25,28 @@ export const links: Route.LinksFunction = () => [
   },
 ];
 
+const queryClient = new QueryClient()
+
 export function Layout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <Meta />
+        <meta property="og:title" content="Finanzas app" />
+        <meta
+          name="description"
+          content="Maneja tus finanzas personales de forma sencilla y efectiva"
+        />
+        <title>Finanzas app</title>
         <Links />
       </head>
       <body>
-        {children}
+        <SessionContextProvider supabaseClient={supabase}>
+          <QueryClientProvider client={queryClient}>
+            {children}
+          </QueryClientProvider>
+        </SessionContextProvider>
         <ScrollRestoration />
         <Scripts />
       </body>

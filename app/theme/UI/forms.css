@@ -1,0 +1,33 @@
+@layer components {
+  .input {
+    @apply w-full px-4 py-3 rounded-lg border 
+           border-[var(--color-neutral)] bg-white
+           placeholder-gray-400
+           focus:ring-2 focus:ring-[var(--color-primary)] 
+           focus:outline-none transition;
+  }
+
+  .label {
+    @apply block text-sm font-medium text-[var(--color-dark)] mb-1;
+  }
+
+  .helper-text {
+    @apply text-xs text-gray-500 mt-1;
+  }
+
+  .form-page {
+    @apply min-h-screen flex items-center justify-center bg-[var(--color-neutral)] font-sans;
+  }
+
+  .form-card {
+    @apply w-full max-w-md;
+  }
+
+  .form-title {
+    @apply text-2xl font-bold text-[var(--color-dark)] mb-6 text-center;
+  }
+
+  .form-body {
+    @apply space-y-4;
+  }
+}
