@@ -70,7 +70,7 @@ VITE_SUPABASE_URL=<TU_SUPABASE_URL>
 VITE_SUPABASE_KEY=<TU_SUPABASE_KEY>
 ```
 
-> ⚠️ Estas variables vienen el PR solo con fines educativos, no subir a producción con crenciales reales.
+> ⚠️ Estas variables vienen el PR solo con fines de demostración, no subir a producción con crenciales reales.
 
 ---
 
